@@ -9,9 +9,34 @@ This image contains the following softwares:
 * OpenJDK 64-Bit v1.8.0_102
 * Scala v2.11.8
 * SBT v0.13.12
-* Apache Spark v2.0.0 
+* Apache Spark v2.0.1
 
-## Get this image
+
+## Various versions of Spark Images
+Depending on the version of the Spark Image you want, please run the corresponding command.<br>
+Latest image is always the most recent version of Apache Spark available. As of current writing it is v2.0.1.
+
+### Apache Spark v1.6.2
+[Dockerfile for Apache Spark v1.6.2](https://github.com/P7h/docker-spark/tree/1.6.2)
+
+	docker pull p7hb/docker-spark:1.6.2
+
+### Apache Spark v2.0.0
+[Dockerfile for Apache Spark v2.0.0](https://github.com/P7h/docker-spark/tree/2.0.0)
+
+	docker pull p7hb/docker-spark:2.0.0
+
+### Apache Spark v2.0.1
+[Dockerfile for Apache Spark v2.0.1](https://github.com/P7h/docker-spark/tree/2.0.1)
+
+	docker pull p7hb/docker-spark:2.0.1
+
+### Apache Spark latest
+[Dockerfile for Apache Spark v2.0.1](https://github.com/P7h/docker-spark)
+
+	docker pull p7hb/docker-spark
+
+## Get the latest image
 There are 2 ways of getting this image:
 
 1. Build this image using [`Dockerfile`](Dockerfile) OR
@@ -22,7 +47,7 @@ Copy the [`Dockerfile`](Dockerfile) to a folder on your local machine and then i
 
     docker build -t p7hb/docker-spark .
 
-### Pull the image
+### Pull the latest image
 
     docker pull p7hb/docker-spark
 
@@ -67,18 +92,19 @@ Running `sbt about` will download and setup SBT on the image.
 
 ```
 root@spark:~# spark-shell
+Spark context Web UI available at http://172.17.0.2:4040
+Spark context available as 'sc' (master = local[*], app id = local-1476086895345).
+Spark session available as 'spark'.
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.0.0
+   /___/ .__/\_,_/_/ /_/\_\   version 2.0.1
       /_/
 
 Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_102)
 Type in expressions to have them evaluated.
 Type :help for more information.
-Spark context available as sc.
-SQL context available as sqlContext.
 
 scala>
 ```
@@ -96,11 +122,18 @@ All the required binaries have been added to the `PATH`.
 
 ### Execute Spark job for calculating `Pi` Value
 
-    spark-submit --class org.apache.spark.examples.SparkPi --master spark://spark:7077 $SPARK_HOME/lib/spark-examples*.jar 100
+    spark-submit --class org.apache.spark.examples.SparkPi --master spark://spark:7077 $SPARK_HOME/examples/jars/spark-examples*.jar 100
+    .......
+    .......
+    Pi is roughly 3.140495114049511
+
 
 OR even simpler
 
     $SPARK_HOME/bin/run-example SparkPi 100
+    .......
+    .......
+    Pi is roughly 3.1413855141385514
 
 Please note the first command above expects Spark Master and Slave to be running. And we can even check the Spark Web UI after executing this command. But with the second command, this is not possible.
 
