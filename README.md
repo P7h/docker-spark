@@ -9,7 +9,7 @@ This image contains the following softwares:
 * OpenJDK 64-Bit v1.8.0_102
 * Scala v2.10.6
 * SBT v0.13.12
-* Apache Spark v1.6.2 
+* Apache Spark v1.6.3 
 
 ## Get this image
 There are 2 ways of getting this image:
@@ -20,16 +20,16 @@ There are 2 ways of getting this image:
 ### Build this image
 Copy the [`Dockerfile`](Dockerfile) to a folder on your local machine and then invoke the following command.
 
-    docker build -t p7hb/docker-spark:1.6.2 .
+    docker build -t p7hb/docker-spark:1.6.3 .
 
 ### Pull the image
 
-    docker pull p7hb/docker-spark:1.6.2
+    docker pull p7hb/docker-spark:1.6.3
 
 
 ## Run the image
 
-    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark:1.6.2
+    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark:1.6.3
 
 
 The above step will launch and run the image with:
@@ -71,10 +71,10 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 1.6.2
+   /___/ .__/\_,_/_/ /_/\_\   version 1.6.3
       /_/
 
-Using Scala version 2.10.5 (OpenJDK 64-Bit Server VM, Java 1.8.0_102)
+Using Scala version 2.10.6 (OpenJDK 64-Bit Server VM, Java 1.8.0_102)
 Type in expressions to have them evaluated.
 Type :help for more information.
 Spark context available as sc.
