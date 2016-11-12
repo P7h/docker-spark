@@ -17,22 +17,71 @@ There are 2 ways of getting this image:
 1. Build this image using [`Dockerfile`](Dockerfile) OR
 2. Pull the image directly from DockerHub.
 
-### Build this image
+## Various versions of Spark Images
+Depending on the version of the Spark Image you want, please run the corresponding command.<br>
+Latest image is always the most recent version of Apache Spark available. As of 10th October, 2016 it is v2.0.1.
+
+### Apache Spark latest [i.e. 2.0.1]
+[Dockerfile for Apache Spark v2.0.1](https://github.com/P7h/docker-spark)
+
+    docker pull p7hb/docker-spark
+
+### Apache Spark v2.0.1
+[Dockerfile for Apache Spark v2.0.1](https://github.com/P7h/docker-spark/tree/2.0.1)
+
+    docker pull p7hb/docker-spark:2.0.1
+
+### Apache Spark v2.0.0
+[Dockerfile for Apache Spark v2.0.0](https://github.com/P7h/docker-spark/tree/2.0.0)
+
+    docker pull p7hb/docker-spark:2.0.0
+
+### Apache Spark v1.6.3
+[Dockerfile for Apache Spark v1.6.2](https://github.com/P7h/docker-spark/tree/1.6.3)
+
+	docker pull p7hb/docker-spark:1.6.3
+
+### Apache Spark v1.6.2
+[Dockerfile for Apache Spark v1.6.2](https://github.com/P7h/docker-spark/tree/1.6.2)
+
+	docker pull p7hb/docker-spark:1.6.2
+
+
+## Get the latest image
+There are 2 ways of getting this image:
+
+1. Build this image using [`Dockerfile`](Dockerfile) OR
+2. Pull the image directly from DockerHub.
+
+### Build Spark 1.6.3 image
 Copy the [`Dockerfile`](Dockerfile) to a folder on your local machine and then invoke the following command.
 
     docker build -t p7hb/docker-spark:1.6.3 .
 
-### Pull the image
+### Pull Spark 1.6.3 image
 
     docker pull p7hb/docker-spark:1.6.3
 
+## Run Spark image
+### Run the latest image i.e. Apache Spark `2.0.1`
+Spark latest version as of 10th October, 2016 is `2.0.1`.  So, `:latest` or `2.0.1` both refer to the same image.
 
-## Run the image
+    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark
+
+### Run images of previous versions
+Other Spark image versions of this repository can be booted by suffixing the image with the Spark version. It can have values of `2.0.0`, `1.6.3` and `1.6.2`.
+
+#### Apache Spark v2.0.0
+
+    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark:2.0.0
+
+#### Apache Spark v1.6.3
 
     docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark:1.6.3
 
+#### Apache Spark v1.6.2
 
-The above step will launch and run the image with:
+    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark:1.6.2
 
 * `root` is the user we logged into.
  * `spark` is the container name.
