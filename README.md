@@ -37,7 +37,7 @@ Latest image is always the most recent version of Apache Spark available. As of 
     docker pull p7hb/docker-spark:2.0.0
 
 ### Apache Spark v1.6.3
-[Dockerfile for Apache Spark v1.6.2](https://github.com/P7h/docker-spark/tree/1.6.3)
+[Dockerfile for Apache Spark v1.6.3](https://github.com/P7h/docker-spark/tree/1.6.3)
 
 	docker pull p7hb/docker-spark:1.6.3
 
