@@ -8,18 +8,23 @@ This image contains the following softwares:
 
 * OpenJDK 64-Bit v1.8.0_102
 * Scala v2.11.8
-* SBT v0.13.12
-* Apache Spark v2.0.1
+* SBT v0.13.13
+* Apache Spark v2.0.2
 
 
 ## Various versions of Spark Images
 Depending on the version of the Spark Image you want, please run the corresponding command.<br>
-Latest image is always the most recent version of Apache Spark available. As of 10th October, 2016 it is v2.0.1.
+Latest image is always the most recent version of Apache Spark available. As of 15th November, 2016 it is v2.0.2.
 
-### Apache Spark latest [i.e. 2.0.1]
-[Dockerfile for Apache Spark v2.0.1](https://github.com/P7h/docker-spark)
+### Apache Spark latest [i.e. 2.0.2]
+[Dockerfile for Apache Spark v2.0.2](https://github.com/P7h/docker-spark)
 
     docker pull p7hb/docker-spark
+
+### Apache Spark v2.0.2
+[Dockerfile for Apache Spark v2.0.2](https://github.com/P7h/docker-spark/tree/2.0.2)
+
+    docker pull p7hb/docker-spark:2.0.2
 
 ### Apache Spark v2.0.1
 [Dockerfile for Apache Spark v2.0.1](https://github.com/P7h/docker-spark/tree/2.0.1)
@@ -59,13 +64,21 @@ Copy the [`Dockerfile`](Dockerfile) to a folder on your local machine and then i
 
 
 ## Run Spark image
-### Run the latest image i.e. Apache Spark `2.0.1`
-Spark latest version as of 10th October, 2016 is `2.0.1`.  So, `:latest` or `2.0.1` both refer to the same image.
+### Run the latest image i.e. Apache Spark `2.0.2`
+Spark latest version as of 10th October, 2016 is `2.0.2`.  So, `:latest` or `2.0.2` both refer to the same image.
 
     docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark
 
 ### Run images of previous versions
-Other Spark image versions of this repository can be booted by suffixing the image with the Spark version. It can have values of `2.0.0`, `1.6.3` and `1.6.2`
+Other Spark image versions of this repository can be booted by suffixing the image with the Spark version. It can have values of `2.0.2`, `2.0.1`, `2.0.0`, `1.6.3` and `1.6.2`
+
+#### Apache Spark v2.0.2
+
+    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark:2.0.2
+
+#### Apache Spark v2.0.1
+
+    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark:2.0.1
 
 #### Apache Spark v2.0.0
 
@@ -121,7 +134,7 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.0.1
+   /___/ .__/\_,_/_/ /_/\_\   version 2.0.2
       /_/
 
 Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_102)
