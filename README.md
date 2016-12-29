@@ -69,8 +69,7 @@ Copy the [`Dockerfile`](Dockerfile) to a folder on your local machine and then i
 
 
 ## Run Spark image
-### Run the latest image i.e. Apache Spark `2.0.2`
-Spark latest version as of 10th October, 2016 is `2.0.2`.  So, `:latest` or `2.0.2` both refer to the same image.
+### Run the latest image i.e. Apache Spark `2.1.0`
 
     docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark
 
