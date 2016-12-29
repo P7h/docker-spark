@@ -6,20 +6,25 @@ The image is available directly from [https://index.docker.io](https://hub.docke
 
 This image contains the following softwares:
 
-* OpenJDK 64-Bit v1.8.0_102
-* Scala v2.11.8
+* OpenJDK 64-Bit v1.8.0_111
+* Scala v2.12.1
 * SBT v0.13.13
-* Apache Spark v2.0.2
+* Apache Spark v2.1.0
 
 
 ## Various versions of Spark Images
 Depending on the version of the Spark Image you want, please run the corresponding command.<br>
 Latest image is always the most recent version of Apache Spark available. As of 15th November, 2016 it is v2.0.2.
 
-### Apache Spark latest [i.e. 2.0.2]
-[Dockerfile for Apache Spark v2.0.2](https://github.com/P7h/docker-spark)
+### Apache Spark latest [i.e. 2.1.0]
+[Dockerfile for Apache Spark v2.1.0](https://github.com/P7h/docker-spark)
 
     docker pull p7hb/docker-spark
+
+### Apache Spark v2.1.0
+[Dockerfile for Apache Spark v2.1.0](https://github.com/P7h/docker-spark/tree/2.1.0)
+
+    docker pull p7hb/docker-spark:2.1.0
 
 ### Apache Spark v2.0.2
 [Dockerfile for Apache Spark v2.0.2](https://github.com/P7h/docker-spark/tree/2.0.2)
@@ -70,7 +75,15 @@ Spark latest version as of 10th October, 2016 is `2.0.2`.  So, `:latest` or `2.0
     docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark
 
 ### Run images of previous versions
-Other Spark image versions of this repository can be booted by suffixing the image with the Spark version. It can have values of `2.0.2`, `2.0.1`, `2.0.0`, `1.6.3` and `1.6.2`
+Other Spark image versions of this repository can be booted by suffixing the image with the Spark version. It can have values of `2.1.0`, `2.0.2`, `2.0.1`, `2.0.0`, `1.6.3` and `1.6.2`
+
+#### Apache Spark latest [i.e. 2.1.0]
+
+    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark
+
+#### Apache Spark v2.1.0
+
+    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark:2.1.0
 
 #### Apache Spark v2.0.2
 
@@ -110,14 +123,14 @@ The above step will launch and run the image with:
 ### Java
 
     root@spark:~# java -version
-    openjdk version "1.8.0_102"
-    OpenJDK Runtime Environment (build 1.8.0_102-8u102-b14.1-1~bpo8+1-b14)
-    OpenJDK 64-Bit Server VM (build 25.102-b14, mixed mode)
+    openjdk version "1.8.0_111"
+    OpenJDK Runtime Environment (build 1.8.0_111-8u111-b14-2~bpo8+1-b14)
+    OpenJDK 64-Bit Server VM (build 25.111-b14, mixed mode)
 
 ### Scala
 
     root@spark:~# scala -version
-    Scala code runner version 2.11.8 -- Copyright 2002-2016, LAMP/EPFL
+    Scala code runner version 2.12.1 -- Copyright 2002-2016, LAMP/EPFL and Lightbend, Inc.
 
 ### SBT
 
@@ -128,16 +141,16 @@ Running `sbt about` will download and setup SBT on the image.
 ```
 root@spark:~# spark-shell
 Spark context Web UI available at http://172.17.0.2:4040
-Spark context available as 'sc' (master = local[*], app id = local-1476086895345).
+Spark context available as 'sc' (master = local[*], app id = local-1483032227786).
 Spark session available as 'spark'.
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.0.2
+   /___/ .__/\_,_/_/ /_/\_\   version 2.1.0
       /_/
 
-Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_102)
+Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_111)
 Type in expressions to have them evaluated.
 Type :help for more information.
 
