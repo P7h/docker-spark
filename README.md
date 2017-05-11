@@ -1,25 +1,30 @@
 # docker-spark
-[![](https://images.microbadger.com/badges/version/p7hb/docker-spark.svg)](http://microbadger.com/images/p7hb/docker-spark) ![](https://img.shields.io/docker/automated/p7hb/docker-spark.svg) [![Docker Pulls](https://img.shields.io/docker/pulls/p7hb/docker-spark.svg)](https://hub.docker.com/r/p7hb/docker-spark/) [![Size](https://images.microbadger.com/badges/image/p7hb/docker-spark.svg)](https://microbadger.com/images/p7hb/docker-spark) [![HitCount](https://hitt.herokuapp.com/P7h/docker-spark.svg)](https://github.com/P7h/docker-spark)
+[![](https://images.microbadger.com/badges/version/p7hb/docker-spark.svg)](http://microbadger.com/images/p7hb/docker-spark) ![](https://img.shields.io/docker/automated/p7hb/docker-spark.svg) [![Docker Pulls](https://img.shields.io/docker/pulls/p7hb/docker-spark.svg)](https://hub.docker.com/r/p7hb/docker-spark/) [![Size](https://images.microbadger.com/badges/image/p7hb/docker-spark.svg)](https://microbadger.com/images/p7hb/docker-spark)
 
 Dockerfiles for ***Apache Spark***.<br>
 The image is available directly from [https://index.docker.io](https://hub.docker.com/u/p7hb/ "» Docker Hub").
 
 This image contains the following softwares:
 
-* OpenJDK 64-Bit v1.8.0_111
-* Scala v2.12.1
-* SBT v0.13.13
-* Apache Spark v2.1.0
+* OpenJDK 64-Bit v1.8.0_131
+* Scala v2.12.2
+* SBT v0.13.15
+* Apache Spark v2.1.1
 
 
 ## Various versions of Spark Images
 Depending on the version of the Spark Image you want, please run the corresponding command.<br>
-Latest image is always the most recent version of Apache Spark available. As of 15th November, 2016 it is v2.0.2.
+Latest image is always the most recent version of Apache Spark available. As of 02nd May, 2017 it is v2.1.1.
 
-### Apache Spark latest [i.e. 2.1.0]
-[Dockerfile for Apache Spark v2.1.0](https://github.com/P7h/docker-spark)
+### Apache Spark latest [i.e. 2.1.1]
+[Dockerfile for Apache Spark v2.1.1](https://github.com/P7h/docker-spark)
 
     docker pull p7hb/docker-spark
+
+### Apache Spark v2.1.1
+[Dockerfile for Apache Spark v2.1.1](https://github.com/P7h/docker-spark/tree/2.1.1)
+
+    docker pull p7hb/docker-spark:2.1.1
 
 ### Apache Spark v2.1.0
 [Dockerfile for Apache Spark v2.1.0](https://github.com/P7h/docker-spark/tree/2.1.0)
@@ -69,17 +74,17 @@ Copy the [`Dockerfile`](Dockerfile) to a folder on your local machine and then i
 
 
 ## Run Spark image
-### Run the latest image i.e. Apache Spark `2.1.0`
-Spark latest version as on 28th December, 2016 is `2.1.0`.  So, `:latest` or `2.1.0` both refer to the same image.
+### Run the latest image i.e. Apache Spark `2.1.1`
+Spark latest version as on 02nd May, 2017 is `2.1.1`.  So, `:latest` or `2.1.1` both refer to the same image.
 
     docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark
 
 ### Run images of previous versions
-Other Spark image versions of this repository can be booted by suffixing the image with the Spark version. It can have values of `2.1.0`, `2.0.2`, `2.0.1`, `2.0.0`, `1.6.3` and `1.6.2`
+Other Spark image versions of this repository can be booted by suffixing the image with the Spark version. It can have values of `2.1.1`, `2.1.0`, `2.0.2`, `2.0.1`, `2.0.0`, `1.6.3` and `1.6.2`.
 
-#### Apache Spark latest [i.e. 2.1.0]
+#### Apache Spark latest [i.e. 2.1.1]
 
-    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark
+    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark:2.1.1
 
 #### Apache Spark v2.1.0
 
@@ -123,14 +128,14 @@ The above step will launch and run the image with:
 ### Java
 
     root@spark:~# java -version
-    openjdk version "1.8.0_111"
-    OpenJDK Runtime Environment (build 1.8.0_111-8u111-b14-2~bpo8+1-b14)
-    OpenJDK 64-Bit Server VM (build 25.111-b14, mixed mode)
+    openjdk version "1.8.0_131"
+    OpenJDK Runtime Environment (build 1.8.0_111-8u131-b11-2~bpo8+1-b11)
+    OpenJDK 64-Bit Server VM (build 25.131-b11, mixed mode)
 
 ### Scala
 
     root@spark:~# scala -version
-    Scala code runner version 2.12.1 -- Copyright 2002-2016, LAMP/EPFL and Lightbend, Inc.
+    Scala code runner version 2.12.2 -- Copyright 2002-2017, LAMP/EPFL and Lightbend, Inc.
 
 ### SBT
 
@@ -147,7 +152,7 @@ Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.1.0
+   /___/ .__/\_,_/_/ /_/\_\   version 2.1.1
       /_/
 
 Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_111)
