@@ -2,24 +2,29 @@
 [![](https://images.microbadger.com/badges/version/p7hb/docker-spark.svg)](http://microbadger.com/images/p7hb/docker-spark) ![](https://img.shields.io/docker/automated/p7hb/docker-spark.svg) [![Docker Pulls](https://img.shields.io/docker/pulls/p7hb/docker-spark.svg)](https://hub.docker.com/r/p7hb/docker-spark/) [![Size](https://images.microbadger.com/badges/image/p7hb/docker-spark.svg)](https://microbadger.com/images/p7hb/docker-spark)
 
 Dockerfiles for ***Apache Spark***.<br>
-The image is available directly from [https://index.docker.io](https://hub.docker.com/u/p7hb/ "» Docker Hub").
+Apache Spark Docker image is available directly from [https://index.docker.io](https://hub.docker.com/u/p7hb/ "» Docker Hub").
 
 This image contains the following softwares:
 
 * OpenJDK 64-Bit v1.8.0_131
 * Scala v2.12.2
 * SBT v0.13.15
-* Apache Spark v2.1.1
+* Apache Spark v2.2.0
 
 
 ## Various versions of Spark Images
 Depending on the version of the Spark Image you want, please run the corresponding command.<br>
-Latest image is always the most recent version of Apache Spark available. As of 02nd May, 2017 it is v2.1.1.
+Latest image is always the most recent version of Apache Spark available. As of 11th July, 2017 it is v2.2.0.
 
-### Apache Spark latest [i.e. 2.1.1]
-[Dockerfile for Apache Spark v2.1.1](https://github.com/P7h/docker-spark)
+### Apache Spark latest [i.e. v2.2.0]
+[Dockerfile for Apache Spark v2.2.0](https://github.com/P7h/docker-spark)
 
     docker pull p7hb/docker-spark
+
+### Apache Spark v2.2.0
+[Dockerfile for Apache Spark v2.2.0](https://github.com/P7h/docker-spark/tree/2.2.0)
+
+    docker pull p7hb/docker-spark:2.2.0
 
 ### Apache Spark v2.1.1
 [Dockerfile for Apache Spark v2.1.1](https://github.com/P7h/docker-spark/tree/2.1.1)
@@ -74,15 +79,19 @@ Copy the [`Dockerfile`](Dockerfile) to a folder on your local machine and then i
 
 
 ## Run Spark image
-### Run the latest image i.e. Apache Spark `2.1.1`
-Spark latest version as on 02nd May, 2017 is `2.1.1`.  So, `:latest` or `2.1.1` both refer to the same image.
+### Run the latest image i.e. Apache Spark `2.2.0`
+Spark latest version as on 11th July, 2017 is `2.2.0`.  So, `:latest` or `2.2.0` both refer to the same image.
 
     docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark
 
 ### Run images of previous versions
-Other Spark image versions of this repository can be booted by suffixing the image with the Spark version. It can have values of `2.1.1`, `2.1.0`, `2.0.2`, `2.0.1`, `2.0.0`, `1.6.3` and `1.6.2`.
+Other Spark image versions of this repository can be booted by suffixing the image with the Spark version. It can have values of `2.2.0`, `2.1.1`, `2.1.0`, `2.0.2`, `2.0.1`, `2.0.0`, `1.6.3` and `1.6.2`.
 
-#### Apache Spark latest [i.e. 2.1.1]
+#### Apache Spark latest [i.e. v2.2.0]
+
+    docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark:2.2.0
+
+#### Apache Spark v2.1.1
 
     docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb/docker-spark:2.1.1
 
