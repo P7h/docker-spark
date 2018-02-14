@@ -1,0 +1,32 @@
+version: "3"
+services:
+  master:
+    image: p7hb/docker-spark:latest
+    ports:
+      - 7077:7077
+      - 8080:8080
+    environment:
+      SPARK_LOCAL_DIRS: /root/data    
+    volumes:
+      - spark_storage:/root/data
+    command: ["/usr/local/spark/bin/spark-class", "org.apache.spark.deploy.master.Master", "--host", "master"]
+  
+  worker:
+    image: p7hb/docker-spark:latest
+    ports:
+      - 8081:8081
+    volumes:
+      - spark_storage:/root/data
+    environment:
+      SPARK_WORKER_CORES: 4
+      SPARK_WORKER_MEMORY: 4g
+      SPARK_LOCAL_DIRS: /root/data
+    command: ["/usr/local/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker", "spark://master:7077"]
+  
+  client:
+    image: ouwen/tensorflow-spark
+    ports:
+      - 8888:8888
+
+volumes:
+  spark_storage:
