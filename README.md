@@ -6,14 +6,46 @@ This repo contains Dockerfiles for ***Apache Spark*** for running in *standalone
 Apache Spark Docker image is available directly from [docker](https://hub.docker.com/u/p7hb/ "» Docker Hub").
 
 # Quickstart
- - [docker-compose quickstart](#docker-compose-start)
- - [manual start](#manual-start)
+ - [Docker-Compose Start](#docker-compose-start)
+ - [Manual Start](#manual-start)
 
 ## Docker Compose Start
- - TODO
+Copy the [`docker-compose.yml`](docker-compose.yml) file and run the following command.
+
+    docker-compose up
+
+This should run a spark cluster on your host machine at `localhost:7077`. You can connect to it remotely
+from any spark shell. A short pyspark example is provided below that will work with the juypter notebook
+running at `localhost:8888`.
+
+
+```
+    from pyspark import SparkConf, SparkContext
+    import random
+
+    conf = SparkConf().setAppName('test').setMaster('spark://master:7077')
+    sc = SparkContext(conf=conf)
+
+    NUM_SAMPLES = 100000
+
+    def inside(p):
+        x, y = random.random(), random.random()
+        return x*x + y*y < 1
+
+    count = sc.parallelize(xrange(0, NUM_SAMPLES)) \
+                 .filter(inside).count()
+    print "Pi is roughly %f" % (4.0 * count / NUM_SAMPLES)
+```
+
+Be sure that your worker is using the desired amount of cores and memory. These can be set directly
+in the [`docker-compose.yml`](docker-compose.yml) file.
+
+    SPARK_WORKER_CORES: 4
+    SPARK_WORKER_MEMORY: 2g
+
 
 ## Manual Start
-### Manual Step 1: Get the latest image
+### Step 1: Get the latest image
 There are 2 ways of getting this image:
 
 1. Build this image using [`Dockerfile`](Dockerfile) OR
@@ -30,7 +62,7 @@ Copy the [`Dockerfile`](Dockerfile) to a folder on your local machine and then i
     docker pull p7hb/docker-spark
 
 
-### Manual Step 2: Run Spark image
+### Step 2: Run Spark image
 #### Run the latest image i.e. Apache Spark `2.2.0`
 Spark latest version as on 11th July, 2017 is `2.2.0`.  So, `:latest` or `2.2.0` both refer to the same image.
 
