@@ -9,7 +9,7 @@ This image contains the following softwares:
 * OpenJDK 64-Bit v1.8.0_131
 * Scala v2.12.2
 * SBT v0.13.15
-* Apache Spark v2.2.0
+* Apache Spark v2.3.0
 
 
 ## Various versions of Spark Images
