@@ -51,8 +51,6 @@ RUN ssh-keygen -t RSA -f ~/.ssh/id_rsa -N '' && \
     /usr/local/spark-2.3.0-bin-hadoop2.7/sbin/start-all.sh
 
 
-#RUN apt-get install -yqq openssh-server 
-
 # We will be running our Spark jobs as `root` user.
 USER root
 
