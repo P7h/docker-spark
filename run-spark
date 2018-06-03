@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+
+function usage(){
+   echo "$0 [-s|-i|-b|--restart|--reinit|--rebuild]"
+   exit 1
+}
+
+TEMP=$(getopt -o sib --long restart,reinit,rebuild \
+     -n "$0" -- "$@")
+
+if [ $? != 0 ] ; then usage >&2 ; exit 1 ; fi
+
+# Note the quotes around `$TEMP': they are essential!
+eval set -- "$TEMP"
+
+mystart=false
+init=false
+build=false
+
+while true ; do
+   case "$1" in
+      -s | --restart )     mystart=true ; shift ;;
+      -i | --reinit )      init=true    ; shift ;;
+      -b | --rebuild )     build=true   ; shift ;;
+      -- )                 shift ; break ;;
+      *) echo "Internal error!" ; exit 1 ;;
+   esac
+done
+if [[ ${arg[0]} != '' ]]; then
+   echo "Remaining arguments:"
+   for arg do echo '--> '"\`$arg'" ; done
+fi
+
+#stop the container if running and asked for restart
+declare -a SPARK_CONTAINERS_RUNNING=$(docker ps --quiet --filter name=spark)
+if [[ ${SPARK_CONTAINERS_RUNNING[0]} != '' && ( $mystart == true || $init == true || $build == true ) ]]; then docker stop $SPARK_CONTAINERS_RUNNING; fi
+
+#delete the container if existing and asked for reinit
+declare -a SPARK_CONTAINERS_STOPPED=$(docker ps --quiet --all --filter name=spark)
+if [[ ${SPARK_CONTAINERS_STOPPED[0]} != '' && ( $init == true || $build == true ) ]]; then docker rm $SPARK_CONTAINERS_STOPPED; fi
+
+#drop the image if visible and asked for rebuild
+declare -a SPARK_IMAGES=$(docker images --quiet --all my-spark:2.3.0)
+if [[ ${SPARK_IMAGES[0]} != '' && $build == true ]]; then docker rmi $SPARK_IMAGES; fi
+
+#build the new image if Dockerfile exists
+if ! [[ -f 'Dockerfile' ]];  then echo "Dockerfile absent! Exiting..."; exit; fi
+
+#and only if image name is available
+declare -a SPARK_IMAGES=$(docker images --quiet --all my-spark:2.3.0)
+if [[ ${SPARK_IMAGES[0]} == '' ]]; then 
+   echo "Docker is absent, building it...";
+   docker build --tag my-spark:2.3.0 . 
+fi
+
+#run the container if image exists but container does not
+declare -a SPARK_IMAGES=$(docker images --quiet --all my-spark:2.3.0)
+declare -a SPARK_CONTAINERS=$(docker ps --quiet --all --filter name=spark)
+
+#exit if the image doesn't exist
+if [[ (${SPARK_IMAGES[0]} == '' )      ]]; then echo "image doesn't exist! exiting..."; exit; fi
+
+#run if container does not exist
+if [[ ( ${SPARK_CONTAINERS[0]} == '' ) ]]; then 
+   echo "container doesn't exist! Running..." ;
+   docker run --detach --tty --publish 8022:22 --publish 4041:4040 --publish 8090:8080 --publish 8091:8081 --hostname spark --name=spark my-spark:2.3.0
+else
+   echo "container exists already..."
+fi
+
+#start if start container isn't started
+declare -a SPARK_CONTAINERS=$(docker ps --quiet --all --filter name=spark)
+if [[ $(docker inspect -f {{.State.Running}} ${SPARK_CONTAINERS[0]}) == 'true' ]]; then 
+   echo "container is running..."
+else
+   echo "starting an existing container..."
+   docker start ${SPARK_CONTAINERS[0]}
+fi
