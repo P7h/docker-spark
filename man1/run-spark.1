@@ -1,0 +1,17 @@
+.\" Manpage for run-spark
+.\" Contact rbailey working at AGL for errors
+.TH run-spark 1 "03 Jun 2018" "1.0" "run-spark man page"
+.SH NAME
+run-spark \- run a spark container in local mode
+.SH SYNOPSIS
+\./run-spark [--restart|--reinit|--rebuild|-s|-i|-b]
+.SH DESCRIPTION
+run-spark is a helper script to build a spark instance. without arguments it will run the minimum to get the instance to work, other options will allow various points to restart the container, reinitialize/rerun the container or rebuild it from the dockerfile. This also uses different ports to standard to attempt to avoid conflict from an existing instance 
+.SH OPTIONS
+The run-spark provides restart/reinit/rebuild options if your container is corrupted or needs changes
+.SH SEE ALSO
+docker(1)
+.SH BUGS
+No known bugs.
+.SH AUTHOR
+Rupert Bailey at AGL
